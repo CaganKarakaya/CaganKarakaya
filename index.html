@@ -1,40 +1,45 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="tr">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Dr. Muharrem Karakaya — Anasayfa</title>
-  <link rel="stylesheet" href="styles.css">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Çağan Karakaya — Portfolio</title>
+  <meta name="description" content="Çağan Karakaya | 10. sınıf öğrencisi — yazılım, web ve tasarım projeleri." />
+  <style>
+    :root{ --bg:#ffffff; --text:#111; --link:#0b5ed7; --muted:#666; --border:#ddd; }
+    *{box-sizing:border-box}
+    body{margin:0;font-family:Arial,Helvetica,sans-serif;background:var(--bg);color:var(--text);line-height:1.5}
+    header,main,footer{max-width:900px;margin:0 auto;padding:12px 16px}
+    header{border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;gap:12px}
+    nav a{margin-right:12px;text-decoration:none;color:var(--link);font-weight:bold}
+    nav a[aria-current="page"]{text-decoration:underline}
+    h1{font-size:24px;margin:0}
+    h2{font-size:20px;margin:0 0 8px}
+    .page{display:none;padding:16px 0;border-bottom:1px solid var(--border)}
+    .page:last-of-type{border-bottom:0}
+    .muted{color:var(--muted)}
+    .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:14px}
+    .card{border:1px solid var(--border);border-radius:8px;padding:12px}
+    .links{display:flex;gap:8px;flex-wrap:wrap;margin-top:8px}
+    .links a{border:1px solid var(--border);padding:6px 10px;text-decoration:none;color:var(--link);border-radius:4px;font-size:14px}
+    .video-container{max-width:700px;width:100%;margin:10px 0 20px}
+    .video-container video{width:100%;height:auto;display:block;border:1px solid var(--border);border-radius:6px}
+    /* iframe için stil */
+    .video-container iframe{width:100%;height:394px;display:block;border:1px solid var(--border);border-radius:6px}
+    img{max-width:100%;border:1px solid var(--border);border-radius:6px;margin-top:10px}
+    footer{border-top:1px solid var(--border);margin-top:24px;padding-top:16px;font-size:14px}
+    hr{border:none;border-top:1px solid var(--border);margin:16px 0}
+  </style>
 </head>
 <body>
-  <header class="site-header">
-    <nav class="nav">
-      <a class="brand" href="index.html">MK</a>
-      <a style='text-decoration:underline' href='index.html'>Anasayfa</a>
-      <a  href='about.html'>Hakkımda</a>
-      <a  href='project.html'>Projeler</a>
-      <a  href='bigideas.html'>Büyük Fikirler</a>
-      <a  href='documentation.html'>Dokümantasyon</a>
+  <header>
+    <div><strong>Çağan Karakaya</strong></div>
+    <nav aria-label="Primary">
+      <a href="#home" id="nav-home">Home</a>
+      <a href="#projects" id="nav-projects">Projects</a>
+      <a href="#big-ideas" id="nav-big-ideas">Big Ideas</a>
+      <a href="#documentation" id="nav-documentation">Documentation</a>
     </nav>
   </header>
-  <main class="container">
 
-    <section class="hero">
-      <h1>Merhaba 👋</h1>
-      <p>Bu site <strong>GitHub Pages</strong> kullanılarak yayınlanacak basit bir ana sayfa şablonudur.
-         Aşağıdaki sayfalardan başlayarak içeriği dilediğiniz gibi düzenleyebilirsiniz.</p>
-      <p><a class="button" href="project.html">Projeleri Gör</a></p>
-    </section>
-    <section style="margin-top:24px">
-      <div class="grid">
-        <div class="card"><h3>Hakkımda</h3><p>Kısa bir biyografi ve misyon.</p></div>
-        <div class="card"><h3>Projeler</h3><p>Üzerinde çalıştığım projeler, görseller ve bağlantılar.</p></div>
-        <div class="card"><h3>Büyük Fikirler</h3><p>İlham veren vizyon ve notlar.</p></div>
-        <div class="card"><h3>Dokümantasyon</h3><p>Kurulum, kullanım, teknik notlar.</p></div>
-      </div>
-    </section>
-
-  </main>
-  <footer class="footer">© 2025 Dr. Muharrem Karakaya • GitHub Pages starter</footer>
-</body>
-</html>
+  <main>
