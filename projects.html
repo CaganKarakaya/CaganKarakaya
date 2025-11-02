@@ -29,59 +29,10 @@
   <main>
     <h1>My Projects</h1>
 
-    <ul>
-      <li>Scratch Tic Tac Toe – <a href="https://scratch.mit.edu/projects/1212300846/" target="_blank">Play on Scratch</a></li>
-    </ul>
-
-    <hr>
-
+    <!-- Clock v1 -->
     <h2>SwiftUI Clock v1</h2>
-    <p>Basit bir SwiftUI saat projesi. Güne göre (sabah/gündüz) arka plan rengi değişir. Her dokunuşta dakika ilerler ve saat 24’e ulaşınca sıfırlanır.</p>
-    <details>
-      <summary>📄 Göster – Package.swift</summary>
-      <pre><code>// swift-tools-version: 5.9
-import PackageDescription
-import AppleProductTypes
-
-let package = Package(
-    name: "Uygulamam",
-    platforms: [ .iOS("18.1") ],
-    products: [
-        .iOSApplication(
-            name: "Uygulamam",
-            targets: ["AppModule"],
-            displayVersion: "1.0",
-            bundleVersion: "1",
-            appIcon: .placeholder(icon: .mic),
-            accentColor: .presetColor(.green),
-            supportedDeviceFamilies: [ .pad, .phone ]
-        )
-    ],
-    targets: [
-        .executableTarget(name: "AppModule", path: ".",
-            swiftSettings: [ .enableUpcomingFeature("BareSlashRegexLiterals") ])
-    ]
-)
-      </code></pre>
-    </details>
-
-    <details>
-      <summary>📄 Göster – MyApp.swift</summary>
-      <pre><code>import SwiftUI
-
-@main
-struct MyApp: App {
-    var body: some Scene {
-        WindowGroup {
-            ContentView()
-        }
-    }
-}
-      </code></pre>
-    </details>
-
-    <details>
-      <summary>📄 Göster – ContentView.swift</summary>
+    <details open>
+      <summary> Swift Kodum </summary>
       <pre><code>import SwiftUI
 
 struct ContentView: View {
@@ -135,56 +86,10 @@ struct ContentView: View {
       </code></pre>
     </details>
 
-    <hr>
-
-    <h2>SwiftUI Clock v2 (Gelişmiş)</h2>
-    <p>AM/PM göstergeli, gece-gündüz arka plan geçişli, buton kontrollü gelişmiş saat uygulaması.</p>
-
+    <!-- Clock v2 -->
+    <h2>SwiftUI Clock v2</h2>
     <details>
-      <summary>📄 Göster – Package.swift</summary>
-      <pre><code>// swift-tools-version: 5.9
-import PackageDescription
-import AppleProductTypes
-
-let package = Package(
-    name: "Uygulamam",
-    platforms: [ .iOS("18.1") ],
-    products: [
-        .iOSApplication(
-            name: "Uygulamam",
-            targets: ["AppModule"],
-            displayVersion: "1.0",
-            bundleVersion: "1",
-            appIcon: .placeholder(icon: .bird),
-            accentColor: .presetColor(.yellow),
-            supportedDeviceFamilies: [ .pad, .phone ]
-        )
-    ],
-    targets: [
-        .executableTarget(name: "AppModule", path: ".",
-            swiftSettings: [ .enableUpcomingFeature("BareSlashRegexLiterals") ])
-    ]
-)
-      </code></pre>
-    </details>
-
-    <details>
-      <summary>📄 Göster – MyApp.swift</summary>
-      <pre><code>import SwiftUI
-
-@main
-struct MyApp: App {
-    var body: some Scene {
-        WindowGroup {
-            ContentView()
-        }
-    }
-}
-      </code></pre>
-    </details>
-
-    <details>
-      <summary>📄 Göster – ContentView.swift</summary>
+      <summary> Swift Kodum </summary>
       <pre><code>import SwiftUI
 
 struct ContentView: View {
@@ -249,6 +154,124 @@ struct ContentView: View {
       </code></pre>
     </details>
 
+    <!-- Face -->
+    <h2>SwiftUI Funny Face</h2>
+    <details>
+      <summary> Swift Kodum </summary>
+      <pre><code>import SwiftUI
+
+struct ContentView: View {
+    var body: some View {
+        ZStack {
+            Circle()
+                .frame(width: 300, height: 300)
+                .foregroundColor(.yellow)
+                .opacity(0.8)
+                .shadow(radius: 5)
+            
+            HStack(spacing: 100) {
+                Circle().frame(width: 40, height: 40).foregroundColor(.black)
+                Circle().frame(width: 40, height: 40).foregroundColor(.black)
+            }
+            .offset(y: -40)
+            
+            Capsule()
+                .frame(width: 120, height: 20)
+                .foregroundColor(.red)
+                .offset(y: 60)
+            
+            Triangle()
+                .fill(Color.orange)
+                .frame(width: 30, height: 40)
+                .offset(y: 10)
+            
+            Rectangle()
+                .frame(width: 200, height: 50)
+                .foregroundColor(.blue)
+                .offset(y: -170)
+            Rectangle()
+                .frame(width: 120, height: 60)
+                .foregroundColor(.blue)
+                .offset(y: -200)
+        }
+    }
+}
+
+struct Triangle: Shape {
+    func path(in rect: CGRect) -> Path {
+        var path = Path()
+        path.move(to: CGPoint(x: rect.midX, y: rect.minY))
+        path.addLine(to: CGPoint(x: rect.maxX, y: rect.maxY))
+        path.addLine(to: CGPoint(x: rect.minX, y: rect.maxY))
+        path.closeSubpath()
+        return path
+    }
+}
+      </code></pre>
+    </details>
+
+    <!-- Calculator -->
+    <h2>SwiftUI Calculator</h2>
+    <details>
+      <summary> Swift Kodum </summary>
+      <pre><code>import SwiftUI
+
+struct ContentView: View {
+    @State private var n1 = ""
+    @State private var n2 = ""
+    @State private var result = 0
+    
+    var body: some View {
+        VStack(spacing: 20) {
+            Text("Calculator")
+                .font(.largeTitle)
+                .bold()
+            
+            TextField("Enter first number", text: $n1)
+                .textFieldStyle(.roundedBorder)
+                .keyboardType(.numberPad)
+                .padding(.horizontal)
+            
+            TextField("Enter second number", text: $n2)
+                .textFieldStyle(.roundedBorder)
+                .keyboardType(.numberPad)
+                .padding(.horizontal)
+            
+            HStack(spacing: 15) {
+                Button("+") {
+                    if let a = Int(n1), let b = Int(n2) {
+                        result = a + b
+                    }
+                }
+                Button("−") {
+                    if let a = Int(n1), let b = Int(n2) {
+                        result = a - b
+                    }
+                }
+                Button("×") {
+                    if let a = Int(n1), let b = Int(n2) {
+                        result = a * b
+                    }
+                }
+                Button("÷") {
+                    if let a = Int(n1), let b = Int(n2), b != 0 {
+                        result = a / b
+                    }
+                }
+            }
+            .buttonStyle(.borderedProminent)
+            
+            Text("Result: \(result)")
+                .font(.title2)
+                .foregroundColor(.blue)
+            
+            Spacer()
+        }
+        .padding()
+    }
+}
+      </code></pre>
+    </details>
   </main>
 </body>
 </html>
