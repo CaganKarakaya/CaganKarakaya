@@ -11,6 +11,8 @@
     nav a.active { text-decoration: underline; }
     main { padding: 2rem; max-width: 800px; margin: auto; }
     h1 { margin-top: 0; }
+    details { margin-top: 10px; }
+    pre { background: #f7f7f7; border: 1px solid #ddd; padding: 10px; overflow-x: auto; border-radius: 6px; }
   </style>
 </head>
 <body>
@@ -23,11 +25,231 @@
       <a href="docs.html">Documentation</a>
     </nav>
   </header>
+
   <main>
     <h1>My Projects</h1>
+
     <ul>
-      <li>Scract Tic tac toe – https://scratch.mit.edu/projects/1212300846/ </li>
+      <li>Scratch Tic Tac Toe – <a href="https://scratch.mit.edu/projects/1212300846/" target="_blank">Play on Scratch</a></li>
     </ul>
+
+    <hr>
+
+    <h2>SwiftUI Clock v1</h2>
+    <p>Basit bir SwiftUI saat projesi. Güne göre (sabah/gündüz) arka plan rengi değişir. Her dokunuşta dakika ilerler ve saat 24’e ulaşınca sıfırlanır.</p>
+    <details>
+      <summary>📄 Göster – Package.swift</summary>
+      <pre><code>// swift-tools-version: 5.9
+import PackageDescription
+import AppleProductTypes
+
+let package = Package(
+    name: "Uygulamam",
+    platforms: [ .iOS("18.1") ],
+    products: [
+        .iOSApplication(
+            name: "Uygulamam",
+            targets: ["AppModule"],
+            displayVersion: "1.0",
+            bundleVersion: "1",
+            appIcon: .placeholder(icon: .mic),
+            accentColor: .presetColor(.green),
+            supportedDeviceFamilies: [ .pad, .phone ]
+        )
+    ],
+    targets: [
+        .executableTarget(name: "AppModule", path: ".",
+            swiftSettings: [ .enableUpcomingFeature("BareSlashRegexLiterals") ])
+    ]
+)
+      </code></pre>
+    </details>
+
+    <details>
+      <summary>📄 Göster – MyApp.swift</summary>
+      <pre><code>import SwiftUI
+
+@main
+struct MyApp: App {
+    var body: some Scene {
+        WindowGroup {
+            ContentView()
+        }
+    }
+}
+      </code></pre>
+    </details>
+
+    <details>
+      <summary>📄 Göster – ContentView.swift</summary>
+      <pre><code>import SwiftUI
+
+struct ContentView: View {
+    @State var hour = 0
+    @State var minuteSeg = 0
+    
+    var hourAngle: Double {
+        let h = hour % 12
+        return (h == 0 && minuteSeg == 0) ? 0 : Double(h)*30 + Double(minuteSeg)*7.5
+    }
+    
+    var body: some View {
+        VStack(spacing:16){
+            Text("Time: \(hour)")
+            ZStack{
+                if hour < 12 {
+                    Circle().fill(.yellow).opacity(0.8)
+                        .overlay(Circle().stroke(.white,lineWidth:4))
+                        .frame(width:200,height:200)
+                } else {
+                    Circle().fill(.blue).opacity(0.8)
+                        .overlay(Circle().stroke(.white,lineWidth:4))
+                        .frame(width:200,height:200)
+                }
+
+                Group {
+                    if minuteSeg==0 {
+                        Rectangle().fill(.white).frame(width:5,height:80).offset(y:-43)
+                    } else if minuteSeg==1 {
+                        Rectangle().fill(.white).frame(width:80,height:5).offset(x:43)
+                    } else if minuteSeg==2 {
+                        Rectangle().fill(.white).frame(width:5,height:80).offset(y:43)
+                    } else {
+                        Rectangle().fill(.white).frame(width:80,height:5).offset(x:-43)
+                    }
+                }
+
+                Rectangle().fill(.white).frame(width:8,height:40)
+                    .offset(y:-25).rotationEffect(.degrees(hourAngle))
+                Circle().fill(.white).frame(width:10,height:10)
+            }
+            .onTapGesture{
+                minuteSeg += 1
+                if minuteSeg == 4 { minuteSeg = 0; hour += 1 }
+                if hour == 24 { hour = 0 }
+            }
+        }
+        .padding()
+    }
+}
+      </code></pre>
+    </details>
+
+    <hr>
+
+    <h2>SwiftUI Clock v2 (Gelişmiş)</h2>
+    <p>AM/PM göstergeli, gece-gündüz arka plan geçişli, buton kontrollü gelişmiş saat uygulaması.</p>
+
+    <details>
+      <summary>📄 Göster – Package.swift</summary>
+      <pre><code>// swift-tools-version: 5.9
+import PackageDescription
+import AppleProductTypes
+
+let package = Package(
+    name: "Uygulamam",
+    platforms: [ .iOS("18.1") ],
+    products: [
+        .iOSApplication(
+            name: "Uygulamam",
+            targets: ["AppModule"],
+            displayVersion: "1.0",
+            bundleVersion: "1",
+            appIcon: .placeholder(icon: .bird),
+            accentColor: .presetColor(.yellow),
+            supportedDeviceFamilies: [ .pad, .phone ]
+        )
+    ],
+    targets: [
+        .executableTarget(name: "AppModule", path: ".",
+            swiftSettings: [ .enableUpcomingFeature("BareSlashRegexLiterals") ])
+    ]
+)
+      </code></pre>
+    </details>
+
+    <details>
+      <summary>📄 Göster – MyApp.swift</summary>
+      <pre><code>import SwiftUI
+
+@main
+struct MyApp: App {
+    var body: some Scene {
+        WindowGroup {
+            ContentView()
+        }
+    }
+}
+      </code></pre>
+    </details>
+
+    <details>
+      <summary>📄 Göster – ContentView.swift</summary>
+      <pre><code>import SwiftUI
+
+struct ContentView: View {
+    @State var hour = 0
+    @State var minute = 0
+    
+    var minuteAngle: Angle { .degrees(Double(minute) * 6) }
+    var hourAngle: Angle {
+        let base = Double(hour % 12) * 30.0
+        let quarter = Double(minute / 2)
+        return .degrees(base + quarter)
+    }
+    var ampm: String { hour < 12 ? "AM" : "PM" }
+    var displayHour: Int { let h = hour % 12; return h == 0 ? 12 : h }
+    var bgImageName: String { hour < 12 ? "bgDay" : "bgNight" }
+    
+    var body: some View {
+        ZStack {
+            Image(bgImageName).resizable().scaledToFill().ignoresSafeArea()
+                .overlay(Color.black.opacity(0.25).ignoresSafeArea())
+            
+            VStack(spacing: 16) {
+                Text(String(format: "%02d:%02d %@", displayHour, minute, ampm))
+                    .font(.title).bold().foregroundColor(.white).shadow(radius: 6)
+                
+                ZStack {
+                    Circle()
+                        .fill(hour < 12 ? Color.green.opacity(0.85) : Color.blue.opacity(0.85))
+                        .frame(width: 300, height: 300)
+                        .overlay(Circle().stroke(.white.opacity(0.9), lineWidth: 6))
+                        .shadow(radius: 10)
+                    
+                    Rectangle().frame(width: 6, height: 120)
+                        .foregroundColor(.black).offset(y: -60)
+                        .rotationEffect(minuteAngle)
+                    Rectangle().frame(width: 10, height: 90)
+                        .foregroundColor(.black).offset(y: -45)
+                        .rotationEffect(hourAngle)
+                    Circle().frame(width: 16, height: 16).foregroundColor(.black)
+                }
+
+                VStack(spacing: 10) {
+                    HStack(spacing: 12) {
+                        Button("- Hour") { hour = (hour == 0) ? 23 : hour - 1 }
+                        Button("+ Hour") { hour = (hour + 1) % 24 }
+                    }
+                    HStack(spacing: 12) {
+                        Button("- Minute") {
+                            if minute == 0 { minute = 59; hour = (hour == 0) ? 23 : hour - 1 }
+                            else { minute -= 1 }
+                        }
+                        Button("+ Minute") {
+                            if minute == 59 { minute = 0; hour = (hour + 1) % 24 }
+                            else { minute += 1 }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+      </code></pre>
+    </details>
+
   </main>
 </body>
 </html>
+
