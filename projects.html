@@ -489,7 +489,6 @@ struct ContentView: View {
       </code></pre>
     </details>
 
-    <!-- 4️⃣ Ice Cream Builder -->
     <h2>SwiftUI Ice Cream Builder</h2>
     <details>
       <summary>📄 My Swift Code</summary>
@@ -569,11 +568,48 @@ struct ContentView: View {
 }
       </code></pre>
     </details>
+ <h2>SwiftUI World Clock</h2>
+    <details>
+      <summary>📄 My Swift Code</summary>
+      <pre><code>import SwiftUI
 
-  </main>
-    <main>
+struct ContentView: View {
+    
+    let cities = [
+        ("🇬🇧", "London", "10:24"),
+        ("🇯🇵", "Tokyo", "18:24"),
+        ("🇺🇸", "New York", "05:24"),
+        ("🇹🇷", "Istanbul", "12:24"),
+        ("🇫🇷", "Paris", "11:24"),
+        ("🇩🇪", "Berlin", "11:24")
+    ]
+    
+    var body: some View {
+        VStack(alignment: .leading, spacing: 12) {
+            
+            Text("World Clock")
+                .font(.title)
+                .fontWeight(.bold)
+                .padding(.bottom, 10)
+            
+            ForEach(cities, id: \.1) { city in
+                HStack {
+                    Text(city.0)          
+                    Text(city.1)          
+                    Spacer()
+                    Text(city.2)          
+                }
+            }
+            
+            Spacer()
+        }
+        .padding()
+    }
+}
+      </code></pre>
+    </details>
+
     <h1>AP CSP – Topic 2.2 Data Compression</h1>
-    <!-- 1. SAYFA -->
     <h2>https://docs.google.com/document/d/1kDBlGEfpwKmTpCahUlj4Z9_tAi4utWsJynACI5g1vGo/edit?tab=t.0</h2>
 
   </main>
