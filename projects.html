@@ -659,29 +659,52 @@ struct ContentView: View {
   </main>
 </body>
 </html>
+<!DOCTYPE html>
 <html>
 <head>
     <title>Rock Paper Scissors Game</title>
     <style>
         body {
             font-family: Arial, sans-serif;
-            background-color: #111;
-            color: white;
+            background-color: #f5f5f5;
+            color: #222;
             text-align: center;
             padding: 40px;
         }
 
+        .card {
+            background: white;
+            max-width: 700px;
+            margin: auto;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+
         img {
-            width: 300px;
+            width: 280px;
             border-radius: 10px;
+            margin: 20px 0;
+        }
+
+        details {
+            text-align: left;
             margin-top: 20px;
         }
 
+        summary {
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 16px;
+            padding: 10px;
+            background: #eaeaea;
+            border-radius: 8px;
+        }
+
         pre {
-            text-align: left;
-            background: #222;
+            background: #f0f0f0;
             padding: 15px;
-            border-radius: 10px;
+            border-radius: 8px;
             overflow-x: auto;
         }
     </style>
@@ -689,21 +712,34 @@ struct ContentView: View {
 
 <body>
 
-<h1>Rock Paper Scissors Game</h1>
+<div class="card">
 
-<h2>App Preview</h2>
-<img src="screenshot.png" alt="App Screenshot">
+    <h1>Rock Paper Scissors Game</h1>
 
-<h2>About the App</h2>
-<p>
-This is a simple Rock Paper Scissors game built using SwiftUI.
-The player competes against the computer and the first to reach 3 points wins the game.
-</p>
+    <h2>App Preview</h2>
+    <img src="screenshot.png" alt="App Screenshot">
 
-<h2>ContentView.swift</h2>
+    <h2>About the App</h2>
+    <p>
+        This is a simple Rock Paper Scissors game built with SwiftUI.
+        The player competes against the computer and the first to reach
+        3 points wins the game.
+    </p>
 
-<pre><code>
+    <h2>Concepts Used</h2>
+    <ul>
+        <li>SwiftUI</li>
+        <li>@State variables</li>
+        <li>Functions</li>
+        <li>Conditional statements</li>
+        <li>Loop (ForEach)</li>
+    </ul>
+
+    <details>
+        <summary>View ContentView.swift</summary>
+        <pre><code>
 import SwiftUI
+
 struct ContentView: View {
     
     let gameLogic = RPSLogic()
@@ -721,14 +757,14 @@ struct ContentView: View {
             Text("You: \(playerScore) Computer: \(computerScore)")
             
             Text(result)
-            HStack 
-            {ForEach(gameLogic.choices, id: \.self) { choice in
-                Button
-                {play(choice)
-                } label: {
-                    Text(choice).font(.largeTitle)
+            HStack {
+                ForEach(gameLogic.choices, id: \.self) { choice in
+                    Button {
+                        play(choice)
+                    } label: {
+                        Text(choice).font(.largeTitle)
+                    }
                 }
-            }
             }
             
             Text("Computer chose: \(computerChoice)")
@@ -736,11 +772,9 @@ struct ContentView: View {
     }
     
     func play(_ userChoice: String) {
-        
         if gameOver { return }
         
         computerChoice = gameLogic.randomComputerChoice()
-        
         let gameResult = gameLogic.determineWinner(
             userChoice: userChoice,
             computerChoice: computerChoice
@@ -755,7 +789,7 @@ struct ContentView: View {
         }
         
         if playerScore == 3 {
-            result = " You won the game!"
+            result = "You won the game!"
             gameOver = true
         } else if computerScore == 3 {
             result = "Computer won the game!"
@@ -763,7 +797,14 @@ struct ContentView: View {
         }
     }
 }
-</code></pre>
+        </code></pre>
+    </details>
+
+</div>
+
+</body>
+</html>
+
 
 </body>
 </html>
