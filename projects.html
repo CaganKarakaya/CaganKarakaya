@@ -2,7 +2,8 @@
 <html lang="tr">
 <head>
 <meta charset="UTF-8">
-<title>My Projects</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>My Projects - Çağan Karakaya</title>
 
 <style>
 body {
@@ -17,6 +18,8 @@ header {
   padding: 16px 24px;
   display: flex;
   justify-content: space-between;
+  align-items: center;
+  background: #f3f4f6;
 }
 
 nav a {
@@ -26,15 +29,65 @@ nav a {
   font-weight: bold;
 }
 
+nav a.active {
+  text-decoration: underline;
+}
+
+.projects {
+  max-width: 900px;
+  margin: auto;
+  padding: 40px 20px;
+}
+
+.card {
+  border: 1px solid #e5e7eb;
+  border-radius: 16px;
+  padding: 20px;
+  margin-bottom: 20px;
+  background: white;
+}
+
+summary {
+  cursor: pointer;
+  padding: 8px 12px;
+  background: #f3f4f6;
+  border-radius: 8px;
+  display: inline-block;
+}
+
+pre {
+  background: #f9fafb;
+  padding: 15px;
+  border-radius: 10px;
+  overflow-x: auto;
+  white-space: pre-wrap;
+}
+
+img.project-image {
+  width: 100%;
+  border-radius: 12px;
+  margin-top: 10px;
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div><strong>Çağan Karakaya</strong></div>
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="projects.html" class="active">Projects</a>
+    <a href="ideas.html">Big Ideas</a>
+    <a href="docs.html">Documentation</a>
+  </nav>
+</header>
 
 <section class="projects">
 
-<!-- 1 -->
 <div class="card">
 <h2>Clock v1</h2>
 <details><summary>View Code</summary>
-<pre><code>
-import SwiftUI
+<pre><code>import SwiftUI
 struct ContentView: View {
     @State var hour = 0
     @State var minuteSeg = 0
@@ -78,17 +131,14 @@ struct ContentView: View {
         }
         .padding()
     }
-}
-</code></pre>
+}</code></pre>
 </details>
 </div>
 
-<!-- 2 -->
 <div class="card">
 <h2>Clock v2</h2>
 <details><summary>View Code</summary>
-<pre><code>
-import SwiftUI
+<pre><code>import SwiftUI
 struct ContentView: View {
     @State var hour = 0
     @State var minute = 0
@@ -141,17 +191,14 @@ struct ContentView: View {
             }
         }
     }
-}
-</code></pre>
+}</code></pre>
 </details>
 </div>
 
-<!-- 3 -->
 <div class="card">
 <h2>Funny Face</h2>
 <details><summary>View Code</summary>
-<pre><code>
-import SwiftUI
+<pre><code>import SwiftUI
 struct ContentView: View {
     var body: some View {
         ZStack {
@@ -176,17 +223,14 @@ struct Triangle: Shape {
         path.closeSubpath()
         return path
     }
-}
-</code></pre>
+}</code></pre>
 </details>
 </div>
 
-<!-- 4 -->
 <div class="card">
 <h2>Calculator</h2>
 <details><summary>View Code</summary>
-<pre><code>
-import SwiftUI
+<pre><code>import SwiftUI
 struct ContentView: View {
     @State private var n1 = ""
     @State private var n2 = ""
@@ -206,17 +250,14 @@ struct ContentView: View {
             Spacer()
         }.padding()
     }
-}
-   </code></pre>
+}</code></pre>
 </details>
 </div>
 
-<!-- 5 -->
 <div class="card">
 <h2>Tic Tac Toe</h2>
 <details><summary>View Code</summary>
-<pre><code>
-import SwiftUI
+<pre><code>import SwiftUI
 
 struct ContentView: View {
     @State private var board: [String] = Array(repeating: "", count: 9)
@@ -330,17 +371,14 @@ struct ContentView: View {
         isDraw = false
         gameOver = false
     }
-}
-    </code></pre>
+}</code></pre>
 </details>
 </div>
 
-<!-- 6 -->
 <div class="card">
 <h2>Binary Counter</h2>
 <details><summary>View Code</summary>
-<pre><code>
-import SwiftUI
+<pre><code>import SwiftUI
 
 struct ContentView: View {
     @State private var id = 0
@@ -409,17 +447,14 @@ struct BlueButton: ButtonStyle {
             .foregroundColor(.white)
             .cornerRadius(8)
     }
-}
-   </code></pre>
+}</code></pre>
 </details>
 </div>
 
-<!-- 7 -->
 <div class="card">
 <h2>Mini Game</h2>
 <details><summary>View Code</summary>
-<pre><code>
-import SwiftUI
+<pre><code>import SwiftUI
 
 struct ContentView: View {
     @State private var level = 1
@@ -496,17 +531,14 @@ struct ContentView: View {
         isRunning = true
         timeLeft = 20
     }
-}
-</code></pre>
+}</code></pre>
 </details>
 </div>
 
-<!-- 8 -->
 <div class="card">
 <h2>Ice Cream Builder</h2>
 <details><summary>View Code</summary>
-<pre><code>
-import SwiftUI
+<pre><code>import SwiftUI
 
 struct Triangle: Shape {
     func path(in rect: CGRect) -> Path {
@@ -579,17 +611,14 @@ struct ContentView: View {
         count = 0
         scoop1 = nil; scoop2 = nil; scoop3 = nil; scoop4 = nil; scoop5 = nil
     }
-}
-</code></pre>
+}</code></pre>
 </details>
 </div>
 
-<!-- 9 -->
 <div class="card">
 <h2>World Clock</h2>
 <details><summary>View Code</summary>
-<pre><code>
-import SwiftUI
+<pre><code>import SwiftUI
 
 struct ContentView: View {
     
@@ -623,17 +652,14 @@ struct ContentView: View {
         }
         .padding()
     }
-}
-      </code></pre>
+}</code></pre>
 </details>
 </div>
 
-<!-- 10 -->
 <div class="card">
 <h2>Color & Mood List</h2>
 <details><summary>View Code</summary>
-<pre><code>
-import SwiftUI
+<pre><code>import SwiftUI
 
 struct ContentView: View {
     let moodList = [
@@ -668,34 +694,23 @@ struct ContentView: View {
         }
         .padding()
     }
-}
-</code></pre>
+}</code></pre>
 </details>
 </div>
 
-<!-- 11 -->
 <div class="card">
 <h2>Recycling Guide (Figma Design)</h2>
-
-<img src="images/Ekran Resmi 2026-03-28 17.10.00.png" style="width:100%; border-radius:12px; margin-top:10px;">
-
+<img src="images/Ekran Resmi 2026-03-28 17.10.00.png" class="project-image" alt="Recycling Guide Figma Design">
 <details>
 <summary>View Figma Link</summary>
-<p>
-<a href="https://www.figma.com/design/C5Xc6ZTqCG6xqYXoBp6ldu/Design-Challenge" target="_blank">
-Open in Figma
-</a>
-</p>
+<p><a href="https://www.figma.com/design/C5Xc6ZTqCG6xqYXoBp6ldu/Design-Challenge" target="_blank">Open in Figma</a></p>
 </details>
-
 </div>
 
-<!-- 12 -->
 <div class="card">
 <h2>Rock Paper Scissors</h2>
 <details><summary>View Code</summary>
-<pre><code>
-import SwiftUI
+<pre><code>import SwiftUI
 
 struct ContentView: View {
     
@@ -753,12 +768,10 @@ struct ContentView: View {
             gameOver = true
         }
     }
-}
-   </code></pre>
+}</code></pre>
 </details>
 </div>
 
 </section>
-
 </body>
 </html>
