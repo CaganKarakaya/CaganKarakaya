@@ -772,6 +772,105 @@ struct ContentView: View {
 </details>
 </div>
 
+  <div class="card">
+<h2>Rock Paper Scissors</h2>
+<details><summary>View Code</summary>
+<pre><code>
+  import SwiftUI
+
+struct ContentView: View {
+    
+
+    let positions = ["Goalkeeper", "Defender", "Midfielder", "Forward"]
+    
+
+    @State private var selectedPosition = "Goalkeeper"
+    @State private var stat1 = ""
+    @State private var stat2 = ""
+    
+  
+    @State private var result = ""
+    
+    var body: some View {
+        VStack(spacing: 20) {
+            
+            Text("Football Skill Evaluator")
+                .font(.title)
+                .bold()
+            
+
+            Picker("Select Position", selection: $selectedPosition) {
+                ForEach(positions, id: \.self) { position in
+                    Text(position)
+                        .foregroundColor(.white)
+                }
+            }
+            .pickerStyle(.menu)
+            
+
+            TextField("Enter Stat 1", text: $stat1)
+                .textFieldStyle(.roundedBorder)
+            
+            TextField("Enter Stat 2", text: $stat2)
+                .textFieldStyle(.roundedBorder)
+            
+
+            Button("Calculate") {
+                let value1 = Double(stat1) ?? 0
+                let value2 = Double(stat2) ?? 0
+                
+                result = evaluatePlayer(position: selectedPosition, stat1: value1, stat2: value2)
+            }
+            .padding()
+            .background(Color.green)
+            .foregroundColor(.white)
+            .cornerRadius(10)
+            
+
+            Text(result)
+                .font(.headline)
+                .padding()
+            
+            Spacer()
+        }
+        .padding()
+        .background(Color(red: 0.1, green: 0.6, blue: 0.2))
+        
+    }
+    
+
+    func evaluatePlayer(position: String, stat1: Double, stat2: Double) -> String {
+        var score = 0.0
+        
+
+        if position == "Goalkeeper" {
+            score = (stat1 * 0.5) + (stat2 * 0.5)
+        } else if position == "Defender" {
+            score = (stat1 * 0.6) + (stat2 * 0.4)
+        } else if position == "Midfielder" {
+            score = (stat1 * 0.5) + (stat2 * 0.5)
+        } else {
+            score = (stat1 * 0.7) + (stat2 * 0.3)
+        }
+        
+
+        if score >= 80 {
+            return "Excellent"
+        } else if score >= 50 {
+            return "Average"
+        } else {
+            return "Needs Improvement"
+        }
+    }
+}
+
+#Preview {
+    ContentView()
+}
+</code></pre>
+</details>
+</div>
+
 </section>
 </body>
 </html>
